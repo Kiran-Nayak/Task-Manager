@@ -1,8 +1,10 @@
-package com.kiran.softwaredevelopers.taskmanager;
+package com.kiran.softwaredevelopers.taskmanager.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.kiran.softwaredevelopers.taskmanager.R;
 
 public class MainActivity extends AppCompatActivity {
 

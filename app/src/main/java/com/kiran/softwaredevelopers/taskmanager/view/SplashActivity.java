@@ -1,10 +1,12 @@
-package com.kiran.softwaredevelopers.taskmanager;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.kiran.softwaredevelopers.taskmanager.view;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.kiran.softwaredevelopers.taskmanager.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -24,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }finally {
-                    startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                     finish();
                 }
             }

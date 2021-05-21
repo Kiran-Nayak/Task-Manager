@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "881274400695",
+    "project_id": "taskmanager-c066a",
+    "storage_bucket": "taskmanager-c066a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881274400695:android:7e5ff25d0d4e4273d0c232",
+        "android_client_info": {
+          "package_name": "com.kiran.softwaredevelopers.taskmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "881274400695-luh0ppvj8v5pr1hf568jqhq7lkgtn5mo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8j0F3DjWq-40FxT0d30QhtrQZfNPVzV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "881274400695-luh0ppvj8v5pr1hf568jqhq7lkgtn5mo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
