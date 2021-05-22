@@ -2,6 +2,7 @@ package com.kiran.softwaredevelopers.taskmanager.view.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.kiran.softwaredevelopers.taskmanager.R;
+import com.kiran.softwaredevelopers.taskmanager.view.LoginActivity;
 import com.kiran.softwaredevelopers.taskmanager.viewmodels.LoginViewModel;
 
 import java.text.SimpleDateFormat;
@@ -46,6 +48,7 @@ public class RegisterFragment extends Fragment {
                 if (firebaseUser != null){
                     Toast.makeText(getContext(), "User Created", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
+                    getActivity().startActivity(new Intent(getContext(), LoginActivity.class));
                 }else {
                     Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
@@ -75,7 +78,7 @@ public class RegisterFragment extends Fragment {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, month);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                String myFormat = "MM/dd/yyyy";
+                String myFormat = "dd/MM/yyyy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
                 dob = myCalendar.getTimeInMillis();
 
@@ -97,16 +100,28 @@ public class RegisterFragment extends Fragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(etRegisterName.getText().toString().isEmpty() ||
+                if (!(etRegisterPassword.getText().toString().equals(etRegisterConfirmPassword.getText().toString()))){
+                    Toast.makeText(getContext(), "Password mis-matched", Toast.LENGTH_SHORT).show();
+                }else if (!(etRegisterName.getText().toString().isEmpty() ||
                         etRegisterPassword.getText().toString().isEmpty() ||
                         etRegisterConfirmPassword.getText().toString().isEmpty() || 
                         etRegisterDOB.getText().toString().isEmpty() ||
                         etRegisterEmail.getText().toString().isEmpty())) {
-                    progressDialog.show();
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
-                    int age = Integer.parseInt(simpleDateFormat.format(System.currentTimeMillis())) - Integer.parseInt(simpleDateFormat.format(dob));
-                    loginViewModel.register(etRegisterName.getText().toString(), etRegisterEmail.getText().toString(), etRegisterPassword.getText().toString()
-                            , etRegisterDOB.getText().toString(), age);
+                    String[] s = etRegisterDOB.getText().toString().split("/");
+                    if (s.length == 3 && Integer.parseInt(s[0]) > 0 && Integer.parseInt(s[0]) < 32 &&
+                            Integer.parseInt(s[1]) > 0 && Integer.parseInt(s[1]) < 13 &&
+                            Integer.parseInt(s[2]) > 0)
+                    {
+                        progressDialog.show();
+
+                        int year = Integer.parseInt(s[2]);
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
+                        int age = Integer.parseInt(simpleDateFormat.format(System.currentTimeMillis())) - year;
+                        loginViewModel.register(etRegisterName.getText().toString(), etRegisterEmail.getText().toString(), etRegisterPassword.getText().toString()
+                                , etRegisterDOB.getText().toString(), age);
+                    }else{
+                        Toast.makeText(getContext(), "Invalid Date", Toast.LENGTH_SHORT).show();
+                    }
                 }else {
                     Toast.makeText(getContext(), "Empty Credentials", Toast.LENGTH_SHORT).show();
                 }

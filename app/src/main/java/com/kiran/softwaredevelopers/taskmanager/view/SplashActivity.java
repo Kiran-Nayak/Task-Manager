@@ -6,6 +6,7 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.kiran.softwaredevelopers.taskmanager.R;
 
 public class SplashActivity extends AppCompatActivity {
@@ -26,7 +27,11 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }finally {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    }else {
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    }
                     finish();
                 }
             }

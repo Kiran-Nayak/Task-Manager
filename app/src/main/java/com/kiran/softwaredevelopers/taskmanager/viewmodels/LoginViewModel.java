@@ -7,16 +7,16 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseUser;
-import com.kiran.softwaredevelopers.taskmanager.model.AppRepository;
+import com.kiran.softwaredevelopers.taskmanager.model.LoginRepository;
 
 public class LoginViewModel extends AndroidViewModel {
 
-    private AppRepository appRepository;
+    private LoginRepository appRepository;
     private MutableLiveData<FirebaseUser> mutableLiveData;
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
-        appRepository = new AppRepository(application);
+        appRepository = new LoginRepository(application);
         mutableLiveData = appRepository.getMutableLiveData();
     }
 

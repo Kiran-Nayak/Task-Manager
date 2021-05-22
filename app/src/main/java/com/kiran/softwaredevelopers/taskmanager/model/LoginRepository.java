@@ -19,12 +19,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class AppRepository {
+public class LoginRepository {
 
     private Application application;
     private MutableLiveData<FirebaseUser> mutableLiveData;
 
-    public AppRepository(Application application) {
+    public LoginRepository(Application application) {
         this.application = application;
         mutableLiveData = new MutableLiveData<>();
 

@@ -1,6 +1,7 @@
 package com.kiran.softwaredevelopers.taskmanager.view.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.firebase.auth.FirebaseUser;
 import com.kiran.softwaredevelopers.taskmanager.R;
 import com.kiran.softwaredevelopers.taskmanager.view.LoginActivity;
+import com.kiran.softwaredevelopers.taskmanager.view.MainActivity;
 import com.kiran.softwaredevelopers.taskmanager.viewmodels.LoginViewModel;
 
 public class LoginFragment extends Fragment {
@@ -48,6 +50,8 @@ public class LoginFragment extends Fragment {
             public void onChanged(FirebaseUser firebaseUser) {
                 if (firebaseUser != null){
                     Toast.makeText(getContext(), "Logged-in Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getContext(), MainActivity.class));
+                    getActivity().finish();
                 }else {
                     Toast.makeText(getContext(), "Error Occurred", Toast.LENGTH_SHORT).show();
                 }
